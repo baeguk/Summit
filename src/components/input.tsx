@@ -1,21 +1,27 @@
-import { TextInput, View } from "react-native"
+import { TextInput, View, TextInputProps } from "react-native"
 import { ReactNode } from "react"
 import { colors } from "@/styles/colors"
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+type Variants = 'primary' | 'secondary' | 'tertiary'
 
-type TextInputProps = {
+
+type InputProps = {
     children: ReactNode
+    variant?: Variants
 }
 
-function Input({ children }: TextInputProps) {
+function Input({ children, variant = 'primary' }: InputProps) {
     return <View>{children}</View>
 }
 
 function Field({...rest}: TextInputProps) {
-    return <View>
-        {/* <MaterialCommunityIcons name='ticket-confirmation-outline' color={colors.green[200]} size={20} />  */}
-        <TextInput placeholderTextColor={colors.gray[200]} className='text-zinc-100 text-lg font-regular'/>
-    </View>
+    return(
+        <TextInput 
+            placeholderTextColor={colors.gray[200]} 
+            className='text-zinc-100 text-lg font-regular pl-3'
+        {...rest}
+        />
+    )
+        
 }
 
 Input.Field = Field
